@@ -1,6 +1,8 @@
 package com.example.android.miwok;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,13 +20,17 @@ public class WordAdapter extends ArrayAdapter<Word> {
 
     private static final String LOG_TAG = WordAdapter.class.getSimpleName();
 
+    /** Resource ID for the background color */
+    private int mColorResourceId;
+
     /**
      * Custom constructor of the {@link WordAdapter}
      * @param context   Is the current context, used to inflate the layout.
      * @param words     A list of {@link Word} objects to display in a list
      */
-    public WordAdapter(Context context, ArrayList<Word> words) {
+    public WordAdapter(Context context, ArrayList<Word> words, int colorResourceId) {
         super(context, 0, words);
+        mColorResourceId = colorResourceId;
     }
 
     /**
@@ -62,6 +68,13 @@ public class WordAdapter extends ArrayAdapter<Word> {
         } else {
             imageView.setVisibility(View.GONE);
         }
+
+        // Find the container to set the background color
+        View textContainer = listItemView.findViewById(R.id.text_container);
+        // Find the right color
+        int color = ContextCompat.getColor(getContext(), mColorResourceId);
+        // Set the background color
+        textContainer.setBackgroundColor(color);
 
         // return the list item (containing 2 TextViews)
         return listItemView;

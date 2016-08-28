@@ -13,12 +13,15 @@ public class Word {
     private String mTranslatedText;
 
     /** Resource id for the corresponding image for the word */
-    private int mImageResourceId = NO_IMAGE_PROVIDED;
+    private int mImageResourceId = NO_RESOURCE_PROVIDED;
 
-    private static final int NO_IMAGE_PROVIDED = -1;
+    /** Resource id for the corresponding audio file for the word. */
+    private int mAudioResourceId = NO_RESOURCE_PROVIDED;
+
+    private static final int NO_RESOURCE_PROVIDED = -1;
 
     /**
-     * Create a new Word object
+     * Create a new Word object with only text
      * @param defaultText       is the word in the default language
      * @param translatedText    is the word in the translated language
      */
@@ -27,7 +30,7 @@ public class Word {
         this.mTranslatedText = translatedText;
     }
     /**
-     * Create a new Word object
+     * Create a new Word object with text and image
      * @param defaultText       is the word in the default language
      * @param translatedText    is the word in the translated language
      * @param imageResourceId   is the drawable image resource id corresponding to the word
@@ -36,6 +39,32 @@ public class Word {
         this.mDefaultText = defaultText;
         this.mTranslatedText = translatedText;
         this.mImageResourceId = imageResourceId;
+    }
+
+    /**
+     * Create a new Word object with text and audio
+     * @param defaultText       is the word in the default language
+     * @param translatedText    is the word in the translated language
+     * @param audioResourceId   is the audio resource id corresponding to the word
+     */
+    public Word(int audioResourceId, String defaultText, String translatedText) {
+        this.mDefaultText = defaultText;
+        this.mTranslatedText = translatedText;
+        this.mAudioResourceId = audioResourceId;
+    }
+
+    /**
+     * Create a new Word object with text, image and audio
+     * @param defaultText       is the word in the default language
+     * @param translatedText    is the word in the translated language
+     * @param imageResourceId   is the drawable image resource id corresponding to the word
+     * @param audioResourceId   is the audio resource id corresponding to the word
+     */
+    public Word(String defaultText, String translatedText, int imageResourceId, int audioResourceId) {
+        this.mDefaultText = defaultText;
+        this.mTranslatedText = translatedText;
+        this.mImageResourceId = imageResourceId;
+        this.mAudioResourceId = audioResourceId;
     }
 
     /**
@@ -60,9 +89,24 @@ public class Word {
     }
 
     /**
-     * @return true if the object has an image, else returns false
+     * @return an integer of the audio resource id
+     */
+    public int getAudioResourceId() {
+        return mAudioResourceId;
+    }
+
+    /**
+     * @return true if the object has an image resource, else returns false
      */
     public boolean hasImage() {
-        return mImageResourceId != NO_IMAGE_PROVIDED;
+        return mImageResourceId != NO_RESOURCE_PROVIDED;
+    }
+
+    /**
+     *
+     * @return true if the object has an audio resource, else returns false
+     */
+    public boolean hasAudio() {
+        return mAudioResourceId != NO_RESOURCE_PROVIDED;
     }
 }

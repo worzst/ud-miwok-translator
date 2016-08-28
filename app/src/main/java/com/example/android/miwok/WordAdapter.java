@@ -42,16 +42,16 @@ public class WordAdapter extends ArrayAdapter<Word> {
             listItemView = LayoutInflater.from(getContext()).inflate(R.layout.list_item, parent, false);
         }
 
-        // Get the {@link Word} object located at this position in the list
+        // Get the Word object located at this position in the list
         Word currentWord = getItem(position);
-
-        // Find the TextView for the default text and set the text
-        TextView defaultTextView = (TextView) listItemView.findViewById(R.id.default_text_view);
-        defaultTextView.setText(currentWord.getDefaultText());
 
         // Find the TextView for the translated text and set the text
         TextView translatedTextView = (TextView) listItemView.findViewById(R.id.translated_text_view);
         translatedTextView.setText(currentWord.getTranslatedText());
+
+        // Find the TextView for the default text and set the text
+        TextView defaultTextView = (TextView) listItemView.findViewById(R.id.default_text_view);
+        defaultTextView.setText(currentWord.getDefaultText());
 
         // return the list item (containing 2 TextViews)
         return listItemView;

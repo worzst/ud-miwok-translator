@@ -12,9 +12,18 @@ public class Word {
     /** Translated text of the word */
     private String mTranslatedText;
 
+    /** Resource id for the corresponding image for the word */
+    private int mImageResourceId;
+
     public Word(String defaultText, String translatedText) {
         this.mDefaultText = defaultText;
         this.mTranslatedText = translatedText;
+    }
+
+    public Word(String defaultText, String translatedText, int imageResourceId) {
+        this.mDefaultText = defaultText;
+        this.mTranslatedText = translatedText;
+        this.mImageResourceId = imageResourceId;
     }
 
     /**
@@ -32,16 +41,9 @@ public class Word {
     }
 
     /**
-     * @param defaultText is the default text to be set
+     * @return an integer of the image resource id
      */
-    public void setDefaultText(String defaultText) {
-        this.mDefaultText = defaultText;
-    }
-
-    /**
-     * @param translatedText is the translated text to be set
-     */
-    public void setTranslatedText(String translatedText) {
-        this.mTranslatedText = translatedText;
+    public int getmImageResourceId() {
+        return mImageResourceId;
     }
 }
